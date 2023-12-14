@@ -1,2 +1,4 @@
-meynv
+meynv/
+.myenv
 .ipynb_checkpoints
+credentials.json
