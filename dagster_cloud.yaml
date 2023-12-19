@@ -1,4 +1,4 @@
 locations:
-  - location_name: nhl-dagster # the name of the code location
+  - location_name: nhl_dagster # the name of the code location
     code_source:
       package_name: nhl_dagster # the name of the python package associated with the code location
