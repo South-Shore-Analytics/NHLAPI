@@ -1,7 +1,5 @@
 dagster-cloud
 numpy
 pandas
-json
-requests
 google.cloud
 dagster
