@@ -87,3 +87,10 @@ def get_team_roster():
     job.result()  # Wait for the job to complete
 
     return roster_df  # Return the complete DataFrame
+
+@asset
+def hello():
+    """Returns a table of all current rosters of all NHL teams."""
+    hello = 'hello world'
+
+    return hello  # Return the complete DataFrame
