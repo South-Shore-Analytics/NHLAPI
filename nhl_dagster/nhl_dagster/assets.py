@@ -8,7 +8,7 @@ import os
 # Google Cloud Configurations
 PROJECT_ID = 'nhl-api-408121'
 DATASET_NAME = 'raw_api_data'
-CREDENTIALS_PATH = os.path.join(os.getcwd(), 'credentials.json')
+CREDENTIALS_PATH = os.getenv("CREDENTIALS_JSON")
 
 # Initialize clients for BigQuery and Cloud Storage
 bigquery_client = bigquery.Client.from_service_account_json(CREDENTIALS_PATH)
