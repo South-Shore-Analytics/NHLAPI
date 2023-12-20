@@ -1,5 +1,5 @@
 dagster-cloud
 numpy
 pandas
-google.cloud
+google-cloud-bigquery
 dagster
