@@ -11,7 +11,10 @@ PROJECT_ID = 'nhl-api-408121'
 DATASET_NAME = 'raw_api_data'
 
 # Initialize clients for BigQuery and Cloud Storage
-bigquery_client = bigquery.Client.from_service_account_json(os.getenv("CREDENTIALS_JSON"))
+credentials_path = os.getenv("CREDENTIALS_JSON")
+
+# Initialize the client with the file path
+bigquery_client = bigquery.Client.from_service_account_json(credentials_path)
 
 BASE_URL = "https://api-web.nhle.com"
 
