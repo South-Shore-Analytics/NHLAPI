@@ -4,14 +4,18 @@ import requests
 from google.cloud import bigquery
 from dagster import AssetExecutionContext, MetadataValue, asset, Output
 import os
+import base64
+
+AUTH_FILE = "/tmp/gcp_creds.json"
+with open(AUTH_FILE, "w") as f:
+    json.dump(json.loads(base64.b64decode(os.getenv("CREDENTIALS_JSON"))), f)
 
 # Google Cloud Configurations
 PROJECT_ID = 'nhl-api-408121'
 DATASET_NAME = 'raw_api_data'
-CREDENTIALS_PATH = os.getenv("CREDENTIALS_JSON")
 
 # Initialize clients for BigQuery and Cloud Storage
-bigquery_client = bigquery.Client.from_service_account_json(CREDENTIALS_PATH)
+bigquery_client = bigquery.Client.from_service_account_json(AUTH_FILE)
 
 BASE_URL = "https://api-web.nhle.com"
 
