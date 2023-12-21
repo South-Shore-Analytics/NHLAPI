@@ -8,10 +8,10 @@ import os
 # Google Cloud Configurations
 PROJECT_ID = 'nhl-api-408121'
 DATASET_NAME = 'raw_api_data'
-GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+CREDS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
 
 # Initialize clients for BigQuery and Cloud Storage
-bigquery_client = bigquery.Client.from_service_account_json(GOOGLE_APPLICATION_CREDENTIALS)
+bigquery_client = bigquery.Client.from_service_account_json(CREDS)
 
 BASE_URL = "https://api-web.nhle.com"
 
