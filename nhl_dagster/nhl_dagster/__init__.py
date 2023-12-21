@@ -14,6 +14,6 @@ import base64
 
 AUTH_FILE = "/tmp/gcp_creds.json"
 with open(AUTH_FILE, "w") as f:
-    json.dump(json.loads(base64.b64decode(os.getenv("JSON_CREDENTIALS"))), f)
+    json.dump(json.loads(base64.b64decode(os.getenv("CREDENTIALS_JSON"))), f)
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = AUTH_FILE
