@@ -3,3 +3,4 @@ numpy
 pandas
 google-cloud-bigquery
 dagster
+pyarrow
