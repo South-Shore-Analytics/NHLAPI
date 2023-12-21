@@ -9,10 +9,9 @@ import base64
 # Google Cloud Configurations
 PROJECT_ID = 'nhl-api-408121'
 DATASET_NAME = 'raw_api_data'
-bigquery_creds=EnvVar("CREDENTIALS_JSON")
 
 # Initialize clients for BigQuery and Cloud Storage
-bigquery_client = bigquery.Client.from_service_account_json(bigquery_creds)
+bigquery_client = bigquery.Client.from_service_account_json(os.getenv("CREDENTIALS_JSON"))
 
 BASE_URL = "https://api-web.nhle.com"
 
