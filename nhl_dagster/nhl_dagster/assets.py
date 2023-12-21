@@ -4,17 +4,36 @@ import requests
 from google.cloud import bigquery
 from dagster import AssetExecutionContext, MetadataValue, asset, Output, EnvVar
 import os
+import tempfile
 import base64
 
 # Google Cloud Configurations
 PROJECT_ID = 'nhl-api-408121'
 DATASET_NAME = 'raw_api_data'
 
-# Initialize clients for BigQuery and Cloud Storage
-credentials_path = os.getenv("CREDENTIALS_JSON")
+encoded_credentials = os.getenv("CREDENTIALS_JSON")
 
-# Initialize the client with the file path
-bigquery_client = bigquery.Client.from_service_account_json(credentials_path)
+# Check if the environment variable is set
+if encoded_credentials is not None:
+    try:
+        # Decode the Base64 encoded string
+        decoded_credentials = base64.b64decode(encoded_credentials)
+
+        # Create a temporary file to hold the credentials
+        with tempfile.NamedTemporaryFile(mode='w+', delete=False) as temp_file:
+            credentials_path = temp_file.name
+            temp_file.write(decoded_credentials.decode())
+
+        # Initialize the BigQuery client with the temporary file
+        bigquery_client = bigquery.Client.from_service_account_json(credentials_path)
+
+        # Optionally, delete the temporary file if no longer needed
+        os.remove(credentials_path)
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+else:
+    print("Credentials environment variable is not set.")
 
 BASE_URL = "https://api-web.nhle.com"
 
